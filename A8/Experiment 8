@@ -1,0 +1,124 @@
+#Question 1
+#Part(i)
+set.seed(123);
+n = 10;
+p = 0.8;
+N = 20;
+k = 100;
+X = c();
+for(i in 1:k){
+sample = rbinom(N,n,p);
+X[i] = mean(sample);
+}
+sampleMean = mean(X);
+n*p;
+
+#Part(ii)
+set.seed(123);
+n = 10;
+p = 0.8;
+N = 20;
+k = 100;
+sampleMean = replicate(k , {
+sample = rbinom(N,n,p);
+mean(sample);
+})
+mean(sampleMean);
+#hist(sampleMean, main = "Sample Means (Binomial, p=0.8)", xlab = "Mean", col = "skyblue")
+n*p;
+
+#Question 2
+#Part(i)
+set.seed(123);
+N = 50;
+k = 100;
+l = 4;
+X = c();
+for(i in 1:k){
+sample = rpois(N,l);
+X[i] = mean(sample);
+}
+sampleMean = mean(X);
+sampleMean;
+l;
+
+#Part(ii)
+set.seed(123);
+N = 50;
+k = 100;
+l = 10;
+sampleMean = replicate(k , {
+sample = rpois(N,l);
+mean(sample);
+});
+#hist(sampleMean, main = paste("λ =", l),col = "lightblue", xlab = "Sample Mean", probability = TRUE)
+mean(sampleMean);
+l;
+
+#Question 3
+#Part(i)
+set.seed(123);
+N = 10;
+k = 100;
+l = 1.5;
+X = c();
+for(i in 1:k){
+sample = rexp(N,l);
+X[i] = mean(sample);
+}
+sampleMean = mean(X);
+sampleMean;
+1/l;
+
+#Part(ii)
+set.seed(123);
+N = 50;
+k = 100;
+l = 1.5;
+sampleMean = replicate(k,{
+sample = rexp(N,l);
+mean(sample);
+});
+mean(sampleMean);
+1/l;
+
+#Question 4
+set.seed(123);
+m = 70;
+v = 10^2;
+s = 10;
+k = 100;
+x = c(10,30,100);
+for(i in 1:3){
+sampleMean = replicate(k,{
+sample = rnorm(x[i],m,s);
+mean(sample);
+})
+hist(sampleMean, main = paste("Normal Distribution, x[i] =", x[i]), col = "lightblue", xlab = "Sample Mean")
+}
+mean(sampleMean);
+
+#Question 5
+#Part(i)
+a = 2;
+b = 1;
+N = 10;
+X = c();
+for(i in 1:k){
+sample = rgamma(N,shape=a,scale=b);
+X[i] = mean(sample);
+}
+sampleMean = mean(X);
+sampleMean;
+a*b;
+
+#Part(ii)
+a = 2;
+b = 1;
+N = 100;
+sampleMean = replicate(k,{
+sample = rgamma(N,a,b);
+mean(sample);
+});
+mean(sampleMean);
+a*b;
